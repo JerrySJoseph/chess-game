@@ -1,21 +1,13 @@
 import PropTypes from 'prop-types';
-import React,{useState} from 'react';
-import { NOOP } from '../../common/noop';
+import React from 'react';
 import { useGame } from '../../context/gamecontext';
-import CellModel from '../../game-engine/models/cell';
 import './board.css';
 
 
 export default function Board() {
   
-    const {currentState}=useGame();
-    const [selectedCell,setSelectedCell]=useState<CellModel|null>(null);
+    const {currentState,selectedCell,setSelectedCell}=useGame();
 
-    function handleOnCellClick(newCell:CellModel){
-        setSelectedCell(newCell);
-    }
-
-    
     return <div className="board">
         {
             currentState.getCells().map(cell=>{
@@ -31,22 +23,29 @@ export default function Board() {
                     else
                         isBlack=false;
                 }
-                return <Cell isBlack={isBlack} isSelected={cell.index===selectedCell?.index} cell={cell} onClick={handleOnCellClick}/>
+                return <Cell isBlack={isBlack} isSelected={cell.index===selectedCell?.index} cell={cell} onClick={setSelectedCell}/>
            
             })
         }
     </div>
 }
 
+/** Single cell Components  */
 function Cell(cellProps:any){
     const {isBlack,cell, isSelected,onClick}=cellProps;
     const baseClassName="cell ";
     const fullClassName=baseClassName+ (isBlack?"cell-black":"cell-white") + (isSelected?" cell-selected":"");
     
+    function handleCellClick(){
+        if(!cell.piece)
+            onClick(null);
+        else 
+            onClick(cell);
+    }
 
-    return <div className={fullClassName}>
+    return <div className={fullClassName} onClick={handleCellClick}>
         {
-            cell.piece && <img src={cell.piece.icon} alt={cell.piece.name} onClick={()=>onClick(cell)}/>
+            cell.piece && <img src={cell.piece.icon} alt={cell.piece.name} onClick={handleCellClick}/>
         }
     </div>
 }

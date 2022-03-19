@@ -1,3 +1,11 @@
+*{
+  --board-border: solid var(--cell-black-color) 5px;
+  --cell-black-color:#00a4af;
+  --cell-white-color:#EBECD0;
+  --cell-selected-color:#ffff65;
+  --cell-selected-border: solid black 2px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

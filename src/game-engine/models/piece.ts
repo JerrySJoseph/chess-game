@@ -10,17 +10,19 @@ export default interface Piece{
     type:PieceType,
     name:string,
     currentPos:CellCordinate,
-    moves:Move[]
+    moves:Move[],
+    movable:boolean,
 }
 
-export function createPiece(icon:string,type:PieceType,name:string,currentPos:CellCordinate,moves:Move[],player?:Player):Piece{
+export function createPiece(icon:string,type:PieceType,name:string,currentPos:CellCordinate,moves:Move[],player?:Player,movable:boolean=true):Piece{
     return{
         player:player||'WHITE',
         icon,
         type,
         name,
         currentPos,
-        moves
+        moves,
+        movable
     }
 
 }

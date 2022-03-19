@@ -1,9 +1,9 @@
 import Board from "../Board";
-import { CellCordinate } from "../models/cell";
+import Cell from "../models/cell";
 import Piece from "../models/piece";
 
 abstract class Move{
-    abstract isAllowed(Board:Board, currentPiece:Piece, src:CellCordinate, dest:CellCordinate):boolean;
+    abstract isAllowed(Board:Board, currentPiece:Piece, src:Cell, dest:Cell):boolean;
 }
 
 export default Move;

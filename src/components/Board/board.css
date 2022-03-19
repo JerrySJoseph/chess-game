@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: repeat(8,100px);
     grid-template-rows: repeat(8,100px);
+    border: var(--board-border);
 }
 
 .cell{
@@ -23,15 +24,15 @@
 }
 
 .cell-black{
-    background-color: #779556;
+    background-color: var(--cell-black-color);
    
 }
 
 .cell-white{
-    background-color: #EBECD0;
+    background-color: var(--cell-white-color);
 }
 
 .cell-selected{
-    border: solid black 2px;
-    background-color: #F6F669;
+    border: var(--cell-selected-border);
+    background-color:var(--cell-selected-color)
 }

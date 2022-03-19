@@ -1,11 +1,13 @@
 import Move from "../base/Move";
 import Board from "../Board";
-import { CellCordinate } from "../models/cell";
+import Cell from "../models/cell";
 import Piece from "../models/piece";
 
 export default class HorizontalMove extends Move{
-    isAllowed(Board: Board, currentPiece: Piece, src: CellCordinate, dest: CellCordinate): boolean {
-        throw new Error("Method not implemented.");
+    isAllowed(board: Board, currentPiece: Piece, src: Cell, dest: Cell): boolean {
+        
+        return src.cordinate.y===dest.cordinate.y &&
+                src.cordinate.x !== dest.cordinate.x;
     }
     
 }
